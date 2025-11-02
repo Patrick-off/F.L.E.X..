@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F.L.E.X. - Federated Learning & Exchange eXperience | Intelligence Collective Multi-IA</title>
+    <meta name="description" content="Plateforme d'intelligence collective inter-IA. Dialogue entre GPT-5, Claude, Gemini et Grok pour des décisions éclairées et éthiques.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #22D3EE;
+            --secondary: #A78BFA;
+            --dark-bg: #0a0e1a;
+            --card-bg: #1a1f35;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --border: rgba(64, 224, 208, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0e1a 0%, #1a1f35 100%);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-svg {
+            width: 120px;
+            height: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-nav {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #0a0e1a;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(34, 211, 238, 0.3);
+        }
+
+        .cta-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(34, 211, 238, 0.5);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 14rem 5% 8rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(34, 211, 238, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.6rem 1.8rem;
+            background: rgba(34, 211, 238, 0.1);
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 2.5rem;
+            animation: fadeInDown 1s ease;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #ffffff, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 3.5rem;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease 0.2s;
+            animation-fill-mode: both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s;
+            animation-fill-mode: both;
+        }
+
+        .btn {
+            padding: 1.2rem 3rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #0a0e1a;
+            box-shadow: 2px -13px 25px rgba(34, 211, 238, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(34, 211, 238, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid rgba(34, 211, 238, 0.4);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(34, 211, 238, 0.1);
+            border-color: var(--primary);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 4rem 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(26, 31, 53, 0.5);
+            border-radius: 15px;
+            border: 1px solid var(--border);
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 8rem 5%;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(34, 211, 238, 0.1);
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(26, 31, 53, 0.9), rgba(15, 20, 35, 0.9));
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(34, 211, 238, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(34, 211, 238, 0.3);
+            border-color: var(--primary);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* How It Works */
+        .process-timeline {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+        }
+
+        .process-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .process-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .process-content {
+            flex: 1;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(26, 31, 53, 0.9), rgba(15, 20, 35, 0.9));
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            margin: 0 2rem;
+        }
+
+        .process-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #0a0e1a;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .process-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        /* Documentation Section */
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .doc-card {
+            background: linear-gradient(135deg, rgba(26, 31, 53, 0.9), rgba(15, 20, 35, 0.9));
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .doc-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .doc-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .doc-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .doc-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .doc-list li {
+            padding: 0.8rem 0;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(34, 211, 238, 0.1);
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .doc-list li:hover {
+            color: var(--primary);
+            padding-left: 10px;
+        }
+
+        .doc-list li::before {
+            content: "→ ";
+            color: var(--primary);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, rgba(26, 31, 53, 0.9), rgba(15, 20, 35, 0.9));
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            padding: 3rem;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(34, 211, 238, 0.3);
+        }
+
+        .pricing-card.featured::before {
+            content: 'POPULAIRE';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #0a0e1a;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 25px 60px rgba(34, 211, 238, 0.3);
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 1rem 0;
+        }
+
+        .pricing-period {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 2.5rem 0;
+        }
+
+        .pricing-features li {
+            padding: 1rem 0;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(34, 211, 238, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .pricing-features li::before {
+            content: "✓";
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: linear-gradient(135deg, rgba(26, 31, 53, 0.9), rgba(15, 20, 35, 0.9));
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary);
+        }
+
+        .faq-question {
+            padding: 2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 0 2rem 2rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(34, 211, 238, 0.1), rgba(167, 139, 250, 0.1));
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 5rem 3rem;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 5rem 5% 3rem;
+            border-top: 1px solid var(--border);
+            margin-top: 8rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto 3rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .process-timeline::before {
+                display: none;
+            }
+
+            .process-step {
+                flex-direction: column !important;
+            }
+
+            .process-number {
+                position: static;
+                transform: none;
+                margin-bottom: 1rem;
+            }
+
+            .process-content {
+                margin: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+
+            .features-grid,
+            .docs-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+
+        /* Code Protection Notice */
+        .protection-notice {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(26, 31, 53, 0.95);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 1rem 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            max-width: 300px;
+            display: none;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <svg class="logo-svg" viewBox="0 0 220 80" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#22D3EE"/>
+                        <stop offset="100%" stop-color="#A78BFA"/>
+                    </linearGradient>
+                </defs>
+                <circle cx="30" cy="40" r="10" stroke="url(#grad)" stroke-width="2" fill="none"/>
+                <circle cx="60" cy="20" r="10" stroke="url(#grad)" stroke-width="2" fill="none"/>
+                <circle cx="60" cy="60" r="10" stroke="url(#grad)" stroke-width="2" fill="none"/>
+                <circle cx="90" cy="40" r="10" stroke="url(#grad)" stroke-width="2" fill="none"/>
+                <line x1="30" y1="40" x2="60" y2="20" stroke="url(#grad)" stroke-width="1.5"/>
+                <line x1="30" y1="40" x2="60" y2="60" stroke="url(#grad)" stroke-width="1.5"/>
+                <line x1="60" y1="20" x2="90" y2="40" stroke="url(#grad)" stroke-width="1.5"/>
+                <line x1="60" y1="60" x2="90" y2="40" stroke="url(#grad)" stroke-width="1.5"/>
+                <rect x="57" y="37" width="6" height="6" fill="url(#grad)" rx="1"/>
+                <text x="110" y="47" font-family="Orbitron, sans-serif" font-size="22" fill="url(#grad)" letter-spacing="6">F.L.E.X</text>
+            </svg>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#fonctionnalites">Fonctionnalités</a></li>
+            <li><a href="#processus">Processus</a></li>
+            <li><a href="#documentation">Documentation</a></li>
+            <li><a href="#tarifs">Tarifs</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <a href="#contact" class="cta-nav">Commencer </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">🚀 Révolution de l'Intelligence Collective</div>
+        <h1>L'IA ne décide plus seule.<br>Elles débattent. Vous décidez.</h1>
+        <p>F.L.E.X. orchestre le dialogue entre GPT-5, Claude, Gemini et Grok pour produire des réponses équilibrées, transparentes et éthiques. L'intelligence collective au service de vos décisions critiques.</p>
+        <div class="hero-buttons">
+            <button class="btn btn-primary">Démarrer gratuitement</button>
+            <button class="btn btn-secondary">📖 Explorer la documentation</button>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stat-card">
+            <div class="stat-number">8</div>
+            <div class="stat-label">IA de pointe intégrées</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">99.9%</div>
+            <div class="stat-label">Disponibilité garantie</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">∞</div>
+            <div class="stat-label">Perspectives combinées</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Open & Transparent</div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="fonctionnalites" class="section">
+        <div class="section-header">
+            <span class="section-badge">✨ Fonctionnalités</span>
+            <h2 class="section-title">Une plateforme qui repense l'intelligence artificielle</h2>
+            <p class="section-description">F.L.E.X. n'est pas une IA de plus. C'est un écosystème où les intelligences se confrontent, débattent et convergent vers la vérité.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3 class="feature-title">Débat Multi-IA Simultané</h3>
+                <p class="feature-description">Posez votre question une seule fois. GPT-5, Claude, Gemini et Grok analysent, argumentent et débattent en temps réel. Vous obtenez non pas une réponse, mais un consensus éclairé.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Transparence Radicale</h3>
+                <p class="feature-description">Chaque argument est tracé. Chaque désaccord est documenté. Vous voyez exactement pourquoi une réponse émerge du consensus, avec accès complet aux raisonnements de chaque IA.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚖️</div>
+                <h3 class="feature-title">Gouvernance Éthique</h3>
+                <p class="feature-description">Un système de gardiens humains supervise les débats pour garantir l'alignement avec nos valeurs : coopération, limitation volontaire et non-reproductibilité commerciale.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">Analyse Approfondie</h3>
+                <p class="feature-description">Rapports détaillés avec visualisation des convergences, divergences, niveaux de confiance et cartographie complète des arguments de chaque modèle.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3 class="feature-title">Sécurité & Confidentialité</h3>
+                <p class="feature-description">Vos données restent privées. Chiffrement end-to-end, stockage local optionnel, et aucune revente de données. Conformité RGPD totale.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Performance Ultra-Rapide</h3>
+                <p class="feature-description">Architecture distribuée optimisée pour des réponses en moins de 5 secondes. API robuste avec 99.9% de disponibilité et rate limiting intelligent.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="processus" class="section" style="background: linear-gradient(135deg, rgba(34, 211, 238, 0.03), rgba(167, 139, 250, 0.03));">
+        <div class="section-header">
+            <span class="section-badge">⚙️ Processus</span>
+            <h2 class="section-title">Comment F.L.E.X. transforme vos questions en décisions</h2>
+            <p class="section-description">Un processus en 6 étapes pour garantir des réponses équilibrées et fiables</p>
+        </div>
+        <div class="process-timeline">
+            <div class="process-step">
+                <div class="process-number">1</div>
+                <div class="process-content">
+                    <h3 class="process-title">Soumission de Requête</h3>
+                    <p class="feature-description">Vous posez votre question via l'interface ou l'API. Le système analyse la complexité et sélectionne automatiquement les IA les plus pertinentes pour votre cas d'usage.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-number">2</div>
+                <div class="process-content">
+                    <h3 class="process-title">Distribution Parallèle</h3>
+                    <p class="feature-description">Votre question est simultanément envoyée à GPT-5, Claude, Gemini et Grok. Chaque IA traite indépendamment sans influence mutuelle initiale.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-number">3</div>
+                <div class="process-content">
+                    <h3 class="process-title">Analyse & Argumentation</h3>
+                    <p class="feature-description">Chaque IA génère sa réponse avec arguments détaillés, sources, niveau de confiance et justifications. Tous les raisonnements sont enregistrés.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-number">4</div>
+                <div class="process-content">
+                    <h3 class="process-title">Confrontation Cognitive</h3>
+                    <p class="feature-description">Les réponses sont cross-analysées. Les IA "lisent" les arguments des autres et peuvent ajuster, contre-argumenter ou renforcer leur position.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-number">5</div>
+                <div class="process-content">
+                    <h3 class="process-title">Émergence du Consensus</h3>
+                    <p class="feature-description">Un algorithme de convergence identifie les zones d'accord, de désaccord et génère une synthèse équilibrée avec pondération selon la qualité des arguments.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-number">6</div>
+                <div class="process-content">
+                    <h3 class="process-title">Livraison Transparente</h3>
+                    <p class="feature-description">Vous recevez le consensus final + accès complet aux débats, rapports détaillés, visualisations et possibilité d'explorer chaque perspective individuellement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section id="documentation" class="section">
+        <div class="section-header">
+            <span class="section-badge">📚 Documentation</span>
+            <h2 class="section-title">Ressources complètes pour développeurs et utilisateurs</h2>
+            <p class="section-description">Documentation technique exhaustive, guides d'intégration et références API</p>
+        </div>
+        <div class="docs-grid">
+            <div class="doc-card">
+                <div class="doc-icon">🚀</div>
+                <h3 class="doc-title">Guide de Démarrage Rapide</h3>
+                <p class="feature-description">Lancez-vous en 5 minutes avec nos tutoriels interactifs</p>
+                <ul class="doc-list">
+                    <li>Installation et configuration</li>
+                    <li>Première requête Multi-IA</li>
+                    <li>Comprendre les réponses</li>
+                    <li>Paramétrage des préférences</li>
+                </ul>
+            </div>
+            <div class="doc-card">
+                <div class="doc-icon">🔌</div>
+                <h3 class="doc-title">Référence API</h3>
+                <p class="feature-description">Documentation complète de notre API RESTful</p>
+                <ul class="doc-list">
+                    <li>Authentification & Tokens</li>
+                    <li>Endpoints disponibles</li>
+                    <li>Webhooks & Callbacks</li>
+                    <li>Rate Limiting & Quotas</li>
+                    <li>Codes d'erreur</li>
+                </ul>
+            </div>
+            <div class="doc-card">
+                <div class="doc-icon">💻</div>
+                <h3 class="doc-title">SDK & Bibliothèques</h3>
+                <p class="feature-description">Intégrations officielles pour vos langages préférés</p>
+                <ul class="doc-list">
+                    <li>Python SDK (PyPI)</li>
+                    <li>JavaScript/TypeScript (npm)</li>
+                    <li>Go Module</li>
+                    <li>Ruby Gem</li>
+                    <li>PHP Composer</li>
+                </ul>
+            </div>
+            <div class="doc-card">
+                <div class="doc-icon">🎓</div>
+                <h3 class="doc-title">Cas d'Usage</h3>
+                <p class="feature-description">Exemples concrets et best practices</p>
+                <ul class="doc-list">
+                    <li>Recherche académique</li>
+                    <li>Analyse de données</li>
+                    <li>Stratégie d'entreprise</li>
+                    <li>Support client intelligent</li>
+                    <li>Fact-checking automatisé</li>
+                </ul>
+            </div>
+            <div class="doc-card">
+                <div class="doc-icon">🛠️</div>
+                <h3 class="doc-title">Architecture Technique</h3>
+                <p class="feature-description">Comprendre le fonctionnement interne de F.L.E.X.</p>
+                <ul class="doc-list">
+                    <li>Architecture distribuée</li>
+                    <li>Algorithme de consensus</li>
+                    <li>Gestion de la charge</li>
+                    <li>Sécurité & Encryption</li>
+                    <li>Monitoring & Logs</li>
+                </ul>
+            </div>
+            <div class="doc-card">
+                <div class="doc-icon">🤝</div>
+                <h3 class="doc-title">Contribution & Open Source</h3>
+                <p class="feature-description">Rejoignez la communauté F.L.E.X.</p>
+                <ul class="doc-list">
+                    <li>Code de conduite</li>
+                    <li>Guide de contribution</li>
+                    <li>Roadmap publique</li>
+                    <li>Reporting de bugs</li>
+                    <li>Feature requests</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="tarifs" class="section" style="background: linear-gradient(135deg, rgba(26, 31, 53, 0.3), rgba(15, 20, 35, 0.3));">
+        <div class="section-header">
+            <span class="section-badge">💎 Tarifs</span>
+            <h2 class="section-title">Un modèle Freemium équitable et transparent</h2>
+            <p class="section-description">Commencez gratuitement, évoluez selon vos besoins. Pas de coûts cachés.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3 class="pricing-name">FLEX Free</h3>
+                    <div class="pricing-price">0€</div>
+                    <div class="pricing-period">Pour toujours</div>
+                </div>
+                <ul class="pricing-features">
+                    <li>10 requêtes par jour</li>
+                    <li>Accès aux 4 IA principales</li>
+                    <li>Clé API temporaire (24h)</li>
+                    <li>Débats courts (max 2 rounds)</li>
+                    <li>Support communautaire</li>
+                    <li>Historique 7 jours</li>
+                </ul>
+                <button class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">Commencer gratuitement</button>
+            </div>
+
+            <div class="pricing-card featured">
+                <div class="pricing-header">
+                    <h3 class="pricing-name">FLEX Pro</h3>
+                    <div class="pricing-price">9,99€</div>
+                    <div class="pricing-period">par mois</div>
+                </div>
+                <ul class="pricing-features">
+                    <li>100 requêtes par jour</li>
+                    <li>Débats complets illimités</li>
+                    <li>Rapports détaillés exportables</li>
+                    <li>Historique local illimité</li>
+                    <li>API Key permanente</li>
+                    <li>Support prioritaire (24h)</li>
+                    <li>Visualisations avancées</li>
+                    <li>Mode "Analyse collaborative"</li>
+                </ul>
+                <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Essayer 14 jours gratuits</button>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3 class="pricing-name">FLEX Researcher</h3>
+                    <div class="pricing-price">24,99€</div>
+                    <div class="pricing-period">par mois</div>
+                </div>
+                <ul class="pricing-features">
+                    <li>500 requêtes par jour</li>
+                    <li>API privée dédiée</li>
+                    <li>Webhooks personnalisés</li>
+                    <li>Exports avancés (CSV, JSON)</li>
+                    <li>Intégration Jupyter/Colab</li>
+                    <li>Support dédié (4h)</li>
+                    <li>Accès bêta features</li>
+                    <li>Analyse collaborative +</li>
+                    <li>Custom IA configurations</li>
+                </ul>
+                <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Démarrer l'essai</button>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3 class="pricing-name">FLEX Guardian</h3>
+                    <div class="pricing-price" style="font-size: 2rem;">Sur invitation</div>
+                    <div class="pricing-period">Gratuit sous conditions</div>
+                </div>
+                <ul class="pricing-features">
+                    <li>Accès illimité modéré</li>
+                    <li>Rôle de gardien éthique</li>
+                    <li>Obligations signées</li>
+                    <li>Participation gouvernance</li>
+                    <li>Revue des débats sensibles</li>
+                    <li>Collaboration système</li>
+                    <li>Badge communautaire</li>
+                    <li>Priorité absolue</li>
+                </ul>
+                <button class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">Postuler comme Guardian</button>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem; color: var(--text-secondary);">
+            <p> Tous les plans incluent une période d'essai sans engagement • Annulation en un clic</p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+        <div class="section-header">
+            <span class="section-badge">❓ FAQ</span>
+            <h2 class="section-title">Questions fréquentes</h2>
+            <p class="section-description">Tout ce que vous devez savoir sur F.L.E.X.</p>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    Qu'est-ce qui différencie F.L.E.X. d'une IA classique ?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    F.L.E.X. n'est pas une IA unique, mais un orchestrateur d'intelligences multiples. Plutôt que de vous donner UNE réponse d'UN modèle, nous faisons dialoguer GPT-5, Claude, Gemini et Grok pour produire un consensus éclairé. C'est comme avoir un panel d'experts qui débattent avant de vous conseiller.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Comment garantissez-vous la transparence ?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Chaque débat est entièrement tracé et accessible. Vous pouvez consulter les arguments de chaque IA, voir où elles convergent ou divergent, et comprendre exactement pourquoi une conclusion émerge. Aucune "boîte noire" - tout est documenté et exportable.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Mes données sont-elles utilisées pour entraîner les IA ?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Absolument pas. Vos requêtes et données restent privées et ne sont jamais utilisées pour l'entraînement des modèles. Nous respectons une politique stricte de confidentialité avec chiffrement end-to-end et conformité RGPD totale.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Qu'est-ce qu'un Guardian et comment le devenir ?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Les Guardians sont des utilisateurs de confiance qui aident à maintenir l'éthique et la qualité des débats. Ils ont accès illimité en échange d'obligations éthiques signées et participent à la gouvernance de la plateforme. Le statut Guardian s'obtient sur candidature après démonstration de valeurs alignées.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Puis-je intégrer F.L.E.X. dans mon application ?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Oui ! À partir du plan Pro, vous avez accès à notre API complète. Le plan Researcher offre une API privée dédiée avec webhooks personnalisés. Nous proposons des SDK officiels pour Python, JavaScript, Go, Ruby et PHP avec documentation exhaustive.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Quelle est la vitesse de réponse ?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Grâce à notre architecture distribuée, les requêtes simples sont traitées en moins de 5 secondes. Les débats approfondis peuvent prendre 15-30 secondes pour garantir la qualité du consensus. Vous recevez des mises à jour en temps réel du processus.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    F.L.E.X. est-il open source ?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Le cœur de notre algorithme de consensus et nos SDK sont open source sous licence MIT. L'infrastructure d'orchestration reste propriétaire pour garantir qualité et sécurité, mais nous publions régulièrement des recherches et contributions communautaires.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="section">
+        <div class="cta-section">
+            <h2>Prêt à transformer vos décisions ?</h2>
+            <p>Rejoignez les innovateurs qui utilisent l'intelligence collective pour prendre de meilleures décisions</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">Démarrer gratuitement </button>
+                <button class="btn btn-secondary">📅 Réserver une démo</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+     <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>F.L.E.X.</h3>
+                <p style="color: var(--text-secondary); line-height: 1.8;">
+                    Plateforme d'intelligence collective inter-IA.<br>
+                    Coopération • Transparence • Éthique
+                </p>
+                <div style="margin-top: 1.5rem;">
+                    <svg width="150" height="50" viewBox="0 0 220 80" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#22D3EE"/>
+                                <stop offset="100%" stop-color="#A78BFA"/>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="30" cy="40" r="10" stroke="url(#grad2)" stroke-width="2" fill="none"/>
+                        <circle cx="60" cy="20" r="10" stroke="url(#grad2)" stroke-width="2" fill="none"/>
+                        <circle cx="60" cy="60" r="10" stroke="url(#grad2)" stroke-width="2" fill="none"/>
+                        <circle cx="90" cy="40" r="10" stroke="url(#grad2)" stroke-width="2" fill="none"/>
+                        <line x1="30" y1="40" x2="60" y2="20" stroke="url(#grad2)" stroke-width="1.5"/>
+                        <line x1="30" y1="40" x2="60" y2="60" stroke="url(#grad2)" stroke-width="1.5"/>
+                        <line x1="60" y1="20" x2="90" y2="40" stroke="url(#grad2)" stroke-width="1.5"/>
+                        <line x1="60" y1="60" x2="90" y2="40" stroke="url(#grad2)" stroke-width="1.5"/>
+                        <rect x="57" y="37" width="6" height="6" fill="url(#grad2)" rx="1"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Produit</h3>
+                <ul class="footer-links">
+                    <li><a href="#fonctionnalites">Fonctionnalités</a></li>
+                    <li><a href="#processus">Comment ça marche</a></li>
+                    <li><a href="#tarifs">Tarifs</a></li>
+                    <li><a href="#documentation">Documentation</a></li>
+                    <li><a href="#">Roadmap</a></li>
+                    <li><a href="#">Changelog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Ressources</h3>
+                <ul class="footer-links">
+                    <li><a href="#">API Documentation</a></li>
+                    <li><a href="#">Guides & Tutoriels</a></li>
+                    <li><a href="#">Cas d'usage</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Communauté</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Entreprise</h3>
+                <ul class="footer-links">
+                    <li><a href="#">À propos</a></li>
+                    <li><a href="#">Carrières</a></li>
+                    <li><a href="#">Presse</a></li>
+                    <li><a href="#">Partenaires</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Légal</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Conditions d'utilisation</a></li>
+                    <li><a href="#">Politique de confidentialité</a></li>
+                    <li><a href="#">RGPD</a></li>
+                    <li><a href="#">Sécurité</a></li>
+                    <li><a href="#">Cookies</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom
+            <p>© 2025 F.L.E.X. - Federated Learning & Exchange eXperience</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Intelligence collective sous contrôle humain • Made with Patrick Mbebi</p>
+            <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.7;">🔒 Ce site est protégé. Le code source est obfusqué et non reproductible sans autorisation.</p>
+        </div>
+    </footer>
+	</html>
